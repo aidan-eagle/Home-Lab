@@ -10,7 +10,7 @@ The device I chose for this project was an older Microsoft Surface Laptop that I
 
 ### Specifications
 
-- Microsoft Surface Laptop
+- Microsoft Surface Laptop Go
 - Intel Core i5 Processor
 - 8GB RAM
 - 128GB SSD
