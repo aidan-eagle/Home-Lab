@@ -128,3 +128,5 @@ This setup allows me to place the machine in a fixed location and manage it enti
 - Set up key-based SSH authentication (disable password login)
 - Explore Docker and Portainer for service deployment
 - Begin hosting basic services (file server, security tools, etc.)
+
+*This project is part of my ongoing effort to develop practical cybersecurity and IT skills outside of the classroom while preparing for a career in cybersecurity.*
