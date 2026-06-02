@@ -12,8 +12,8 @@ The device I chose for this project was an older Microsoft Surface Laptop that I
 
 - Microsoft Surface Laptop Go
 - Intel Core i5 Processor
-- 8GB RAM
-- 128GB SSD
+- 4GB RAM
+- 64 GB SSD
 - Approximately 50GB of available storage
 
 ## Planning the Environment
