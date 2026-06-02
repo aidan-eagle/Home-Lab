@@ -69,9 +69,8 @@ Even before installing the operating system, this project reinforced the importa
 
 - Complete Linux Mint installation
 - Configure remote access using SSH
-- Install Docker and containerized services
+- Install Docker and Portainer for containerized services
 - Deploy cybersecurity tools
-- Set up monitoring and logging solutions
 - Document future lab projects and findings
 
 ---
