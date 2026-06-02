@@ -126,6 +126,5 @@ This setup allows me to place the machine in a fixed location and manage it enti
 
 - Configure static IP for consistent access
 - Set up key-based SSH authentication (disable password login)
-- Install monitoring tools (htop, netdata, or Prometheus node exporter)
-- Explore Docker for service deployment
+- Explore Docker and Portainer for service deployment
 - Begin hosting basic services (file server, security tools, etc.)
