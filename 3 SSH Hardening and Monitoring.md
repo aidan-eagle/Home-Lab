@@ -98,3 +98,364 @@ The server now utilizes multiple layers of protection:
 ### Outcome
 
 Successfully transformed a default SSH installation into a hardened remote administration solution using layered security controls, automated attack prevention, and key-based authentication. This configuration follows common security practices used in enterprise Linux environments and provides a secure foundation for future homelab services.
+
+# Commands Used
+
+## 1. System Updates
+
+Update package repositories:
+
+```bash
+sudo apt update
+```
+
+Upgrade installed packages:
+
+```bash
+sudo apt upgrade -y
+```
+
+Reboot system:
+
+```bash
+sudo reboot
+```
+
+---
+
+## 2. Install and Configure SSH
+
+Install OpenSSH Server:
+
+```bash
+sudo apt install openssh-server -y
+```
+
+Enable SSH at boot and start service:
+
+```bash
+sudo systemctl enable --now ssh
+```
+
+Verify SSH status:
+
+```bash
+sudo systemctl status ssh
+```
+
+Check current username:
+
+```bash
+whoami
+```
+
+Find server IP address:
+
+```bash
+hostname -I
+```
+
+---
+
+## 3. Configure Firewall (UFW)
+
+Install UFW:
+
+```bash
+sudo apt install ufw -y
+```
+
+Allow SSH through firewall:
+
+```bash
+sudo ufw allow ssh
+```
+
+Enable firewall:
+
+```bash
+sudo ufw enable
+```
+
+Verify firewall status:
+
+```bash
+sudo ufw status
+```
+
+---
+
+## 4. Monitor SSH Authentication Logs
+
+View live authentication logs:
+
+```bash
+sudo tail -f /var/log/auth.log
+```
+
+View failed login attempts:
+
+```bash
+sudo grep "Failed password" /var/log/auth.log
+```
+
+View successful logins:
+
+```bash
+sudo grep "Accepted" /var/log/auth.log
+```
+
+---
+
+## 5. Install Fail2Ban
+
+Install Fail2Ban:
+
+```bash
+sudo apt install fail2ban -y
+```
+
+Enable and start Fail2Ban:
+
+```bash
+sudo systemctl enable --now fail2ban
+```
+
+Check service status:
+
+```bash
+sudo systemctl status fail2ban
+```
+
+---
+
+## 6. Configure Fail2Ban
+
+Create editable configuration:
+
+```bash
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+```
+
+Edit configuration:
+
+```bash
+sudo nano /etc/fail2ban/jail.local
+```
+
+Configure SSH protection:
+
+```ini
+[sshd]
+enabled = true
+maxretry = 5
+findtime = 10m
+bantime = 1h
+```
+
+Restart Fail2Ban:
+
+```bash
+sudo systemctl restart fail2ban
+```
+
+Verify Fail2Ban:
+
+```bash
+sudo fail2ban-client status
+```
+
+Verify SSH jail:
+
+```bash
+sudo fail2ban-client status sshd
+```
+
+---
+
+## 7. Troubleshooting Fail2Ban
+
+Check service status:
+
+```bash
+sudo systemctl status fail2ban
+```
+
+Review service logs:
+
+```bash
+sudo journalctl -u fail2ban --no-pager -n 50
+```
+
+Validate configuration syntax:
+
+```bash
+sudo fail2ban-client -t
+```
+
+Check Fail2Ban log:
+
+```bash
+sudo tail -50 /var/log/fail2ban.log
+```
+
+---
+
+## 8. Generate SSH Keys
+
+Generate Ed25519 key pair on client machine:
+
+```bash
+ssh-keygen -t ed25519
+```
+
+Verify key files:
+
+### Windows
+
+```powershell
+dir $env:USERPROFILE\.ssh
+```
+
+### Linux
+
+```bash
+ls ~/.ssh
+```
+
+---
+
+## 9. Install Public Key on Server
+
+Copy key to server:
+
+```bash
+ssh-copy-id username@SERVER_IP
+```
+
+Example:
+
+```bash
+ssh-copy-id aidan@192.168.1.50
+```
+
+Test key authentication:
+
+```bash
+ssh aidan@192.168.1.50
+```
+
+---
+
+## 10. Manual Key Installation (Alternative)
+
+Create SSH directory:
+
+```bash
+mkdir -p ~/.ssh
+```
+
+Set permissions:
+
+```bash
+chmod 700 ~/.ssh
+```
+
+Create authorized keys file:
+
+```bash
+nano ~/.ssh/authorized_keys
+```
+
+Set permissions:
+
+```bash
+chmod 600 ~/.ssh/authorized_keys
+```
+
+---
+
+## 11. Disable Password Authentication
+
+Edit SSH configuration:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Modify:
+
+```ini
+PasswordAuthentication no
+PermitRootLogin no
+PubkeyAuthentication yes
+```
+
+Restart SSH:
+
+```bash
+sudo systemctl restart ssh
+```
+
+---
+
+## 12. Verify Key-Based Authentication
+
+Connect to server:
+
+```bash
+ssh aidan@192.168.1.50
+```
+
+Monitor logs:
+
+```bash
+sudo tail -f /var/log/auth.log
+```
+
+Successful key authentication appears as:
+
+```text
+Accepted publickey for aidan
+```
+
+---
+
+## 13. Additional Verification Commands
+
+Check SSH listener:
+
+```bash
+ss -tulnp | grep :22
+```
+
+Check Docker group membership:
+
+```bash
+groups
+```
+
+Check active services:
+
+```bash
+systemctl list-units --type=service --state=running
+```
+
+Check system uptime:
+
+```bash
+uptime
+```
+
+---
+
+## Security Outcome
+
+Implemented layered SSH security through:
+
+- UFW Firewall
+- SSH Key Authentication
+- Fail2Ban Brute-Force Protection
+- Authentication Logging
+- Disabled Password Authentication
+- Restricted Remote Administration Access
