@@ -14,7 +14,7 @@ After configuring the laptop as a dedicated homelab server, I implemented severa
 
 #### SSH Availability and Reliability
 
-Configured Linux Mint power management settings to prevent the laptop from entering sleep mode while connected to power. This allows the server to remain accessible over SSH 24/7 without requiring physical interaction.
+Like stated before, I configured Linux Mint power management settings to prevent the laptop from entering sleep mode while connected to power. This allows the server to remain accessible over SSH 24/7 without requiring physical interaction.
 
 #### Fail2Ban Deployment
 
