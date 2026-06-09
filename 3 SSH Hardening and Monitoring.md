@@ -325,29 +325,7 @@ ls ~/.ssh
 
 ---
 
-## 9. Install Public Key on Server
-
-Copy key to server:
-
-```bash
-ssh-copy-id username@SERVER_IP
-```
-
-Example:
-
-```bash
-ssh-copy-id aidan@192.168.1.50
-```
-
-Test key authentication:
-
-```bash
-ssh aidan@192.168.1.50
-```
-
----
-
-## 10. Manual Key Installation (Alternative)
+## 9. Manual Key Installation
 
 Create SSH directory:
 
@@ -375,7 +353,7 @@ chmod 600 ~/.ssh/authorized_keys
 
 ---
 
-## 11. Disable Password Authentication
+## 10. Disable Password Authentication
 
 Edit SSH configuration:
 
@@ -399,7 +377,7 @@ sudo systemctl restart ssh
 
 ---
 
-## 12. Verify Key-Based Authentication
+## 11. Verify Key-Based Authentication
 
 Connect to server:
 
@@ -417,34 +395,6 @@ Successful key authentication appears as:
 
 ```text
 Accepted publickey for aidan
-```
-
----
-
-## 13. Additional Verification Commands
-
-Check SSH listener:
-
-```bash
-ss -tulnp | grep :22
-```
-
-Check Docker group membership:
-
-```bash
-groups
-```
-
-Check active services:
-
-```bash
-systemctl list-units --type=service --state=running
-```
-
-Check system uptime:
-
-```bash
-uptime
 ```
 
 ---
