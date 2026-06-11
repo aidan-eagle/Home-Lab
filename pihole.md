@@ -14,7 +14,7 @@ Before deploying Pi-hole, I needed a way to run applications without directly in
 
 ## What is Docker?
 
-For non-technical users, Docker can be thought of as a lightweight shipping container for software.
+Docker can be thought of as a lightweight shipping container for software.
 
 Instead of installing an application directly onto a computer, Docker packages everything the application needs into a self-contained environment called a **container**.
 
@@ -38,7 +38,7 @@ While Docker can be managed entirely from the command line, I wanted a more user
 
 Portainer is a web-based management interface for Docker.
 
-For non-technical users, Portainer functions like a control panel for containerized applications.
+Portainer functions like a control panel for containerized applications.
 
 Instead of memorizing Docker commands, Portainer allows administrators to:
 
